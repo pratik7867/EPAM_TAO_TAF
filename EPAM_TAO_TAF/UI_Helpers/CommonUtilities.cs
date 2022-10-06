@@ -187,8 +187,7 @@ namespace EPAM_TAO_TAF.UI_Helpers
         public string TakeScreenshot(IWebDriver driver, string strSSFileName)
         {
             try
-            {
-                //strParentDir = Path.GetFullPath(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, @"..\")) + DateTime.Now.ToString("dd-MM-yyyy");
+            {                
                 strParentDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DateTime.Now.ToString("dd-MM-yyyy"));
                 strSSDir = strParentDir + @"\" + "Screenshots";
 
@@ -210,7 +209,7 @@ namespace EPAM_TAO_TAF.UI_Helpers
                 Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
                 Guid guid = Guid.NewGuid();
-                strPathToSSFile = strSSDir + strSSFileName + "_" + guid;
+                strPathToSSFile = strSSDir + @"\" + strSSFileName + "_" + guid;
                 screenshot.SaveAsFile(strPathToSSFile, ScreenshotImageFormat.Png);
 
                 return strPathToSSFile;
